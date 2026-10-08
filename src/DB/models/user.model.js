@@ -22,7 +22,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: Object.values(USER_ROLES),
         default: USER_ROLES.USER
-    }
+    },
+    refreshToken: [
+        {
+            token: String,
+            expireAt: Date,
+        }
+    ]
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

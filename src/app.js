@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { config } from './config/env.js';
@@ -14,6 +15,7 @@ export const bootstrap = (app) => {
     }));
 
     app.use(express.json());
+    app.use(cookieParser());
 
     if (config.NODE_ENV === 'development') {
         app.use(morgan('dev'));
