@@ -10,7 +10,8 @@ export const config = {
 
     JWT: {
         SECRET: process.env.JWT_SECRET || 'fallback_secret_key_for_dev',
-        EXPIRE: process.env.JWT_EXPIRE || '7d',
+        ACCESS_EXPIRE: process.env.JWT_ACCESS_EXPIRE || '15m',
+        REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || '7d',
     },
 
     PAGINATION: {
