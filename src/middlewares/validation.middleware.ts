@@ -1,6 +1,8 @@
+import type { RequestHandler } from 'express';
+import type { ObjectSchema } from 'joi';
 import { createUnprocessableEntityError } from '../utils/appError.js';
 
-export const validate = (schema) => {
+export const validate = (schema: ObjectSchema): RequestHandler => {
     return (req, res, next) => {
         const { error } = schema.validate(
             { ...req.body, ...req.params, ...req.query },
