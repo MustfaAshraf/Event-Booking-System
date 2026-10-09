@@ -1,4 +1,3 @@
-import { boolean, string } from 'joi';
 import { HTTP_STATUS } from '../config/constants.js';
 
 export class AppError extends Error {
