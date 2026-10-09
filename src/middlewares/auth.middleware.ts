@@ -25,6 +25,27 @@ export const protect: RequestHandler = asyncHandler(async (req, res, next) => {
     next();
 });
 
+export const optionalAuth: RequestHandler = asyncHandler(async (req, res, next) => {
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    if (!token) {
+        return next();
+    }
+
+    const decoded = verifyToken(token);
+    const currentUser = await User.findById(decoded.id);
+
+    if (!currentUser) {
+        return next(createUnauthorizedError('The user belonging to this token does no longer exist.'));
+    }
+
+    req.user = currentUser;
+    next();
+});
+
 export const restrictTo = (...roles: string[]): RequestHandler => {
     return (req, res, next) => {
         if (!req.user) {
