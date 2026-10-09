@@ -1,9 +1,10 @@
+import type { Express } from "express";
 import authRouter from "../modules/auth/auth.routes.js";
 import { createNotFoundError } from "./appError.js";
 // import eventRouter from "../modules/event/event.routes.js";
 // import bookingRouter from "../modules/booking/booking.routes.js";
 
-const routerHandler = (app) => {
+const routerHandler = (app: Express): void => {
     app.use("/api/auth", authRouter);
     // app.use("/api/events", eventRouter);
     // app.use("/api/bookings", bookingRouter);
