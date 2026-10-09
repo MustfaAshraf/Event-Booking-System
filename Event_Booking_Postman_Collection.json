@@ -1,0 +1,438 @@
+{
+  "info": {
+    "_postman_id": "e8a2910f-5df9-41ff-a4fe-9ec7719fdde1",
+    "name": "Event Booking System API",
+    "description": "Complete Postman collection for testing Auth, Events, and Bookings endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38801866",
+    "_collection_link": "https://go.postman.co/collection/38801866-e8a2910f-5df9-41ff-a4fe-9ec7719fdde1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"mahmod\",\n  \"email\": \"mahmod@gmail.com\",\n  \"password\": \"Password123\",\n  \"confirmPassword\": \"Password123\",\n  \"role\": \"Organizer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"mahmod@gmail.com\",\n  \"password\": \"Password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Current-User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzgxMTYyM2UzNjg2NGM3ZTZhN2I5OSIsImVtYWlsIjoibXVzdGFmYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTc5MTU0NDEzNSwiZXhwIjoxNzkxNTQ1OTM1fQ.4GxXc08ocK4Aj3WsilO5pZ_GOxBcLQsMMyiGsmwKT8Q"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Create-Event (Organizer)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzhjYjI1ZjkyOTc3M2FiOWE0YWFjZSIsImVtYWlsIjoibWFobW9kQGdtYWlsLmNvbSIsInJvbGUiOiJPcmdhbml6ZXIiLCJpYXQiOjE3OTE1NDQyNzUsImV4cCI6MTc5MTU0NjA3NX0.MSu-aw25-AL34v3921GEhnI5CFbzNgXRERmHgRKGu0s"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Tech Innovation Summit 2026\",\n  \"description\": \"Join top leaders in technology and software engineering for a 3-day conference.\",\n  \"category\": \"Technology\",\n  \"location\": \"Cairo International Convention Centre\",\n  \"startDate\": \"2026-11-15T10:00:00.000Z\",\n  \"capacity\": 50,\n  \"price\": 150,\n  \"status\": \"published\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List-Events (Filtered & Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzhjYjI1ZjkyOTc3M2FiOWE0YWFjZSIsImVtYWlsIjoibWFobW9kQGdtYWlsLmNvbSIsInJvbGUiOiJPcmdhbml6ZXIiLCJpYXQiOjE3OTE1NDQyNzUsImV4cCI6MTc5MTU0NjA3NX0.MSu-aw25-AL34v3921GEhnI5CFbzNgXRERmHgRKGu0s"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/events?page=1&limit=10&keyword=Tech&category=Technology&sort=-startDate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "keyword",
+                  "value": "Tech"
+                },
+                {
+                  "key": "category",
+                  "value": "Technology"
+                },
+                {
+                  "key": "sort",
+                  "value": "-startDate"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-Event",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzgxMTYyM2UzNjg2NGM3ZTZhN2I5OSIsImVtYWlsIjoibXVzdGFmYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTc5MTU0NDEzNSwiZXhwIjoxNzkxNTQ1OTM1fQ.4GxXc08ocK4Aj3WsilO5pZ_GOxBcLQsMMyiGsmwKT8Q"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/events/6ac8cbecf929773ab9a4aaee",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events",
+                "6ac8cbecf929773ab9a4aaee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update-Event (Organizer)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzhjYjI1ZjkyOTc3M2FiOWE0YWFjZSIsImVtYWlsIjoibWFobW9kQGdtYWlsLmNvbSIsInJvbGUiOiJPcmdhbml6ZXIiLCJpYXQiOjE3OTE1NDQyNzUsImV4cCI6MTc5MTU0NjA3NX0.MSu-aw25-AL34v3921GEhnI5CFbzNgXRERmHgRKGu0s"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Tech Innovation Summit 2026 (Updated)\",\n  \"status\": \"published\",\n  \"capacity\": 100\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/events/6ac8cbecf929773ab9a4aaee",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events",
+                "6ac8cbecf929773ab9a4aaee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-Event-Bookings (Organizer)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzhjYjI1ZjkyOTc3M2FiOWE0YWFjZSIsImVtYWlsIjoibWFobW9kQGdtYWlsLmNvbSIsInJvbGUiOiJPcmdhbml6ZXIiLCJpYXQiOjE3OTE1NDQyNzUsImV4cCI6MTc5MTU0NjA3NX0.MSu-aw25-AL34v3921GEhnI5CFbzNgXRERmHgRKGu0s"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/events/6ac8cbecf929773ab9a4aaee/bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events",
+                "6ac8cbecf929773ab9a4aaee",
+                "bookings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete / Cancel Event (Organizer)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzhjYjI1ZjkyOTc3M2FiOWE0YWFjZSIsImVtYWlsIjoibWFobW9kQGdtYWlsLmNvbSIsInJvbGUiOiJPcmdhbml6ZXIiLCJpYXQiOjE3OTE1NDQyNzUsImV4cCI6MTc5MTU0NjA3NX0.MSu-aw25-AL34v3921GEhnI5CFbzNgXRERmHgRKGu0s"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/events/6ac8cbecf929773ab9a4aaee",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events",
+                "6ac8cbecf929773ab9a4aaee"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Book-Event (User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzgxMTYyM2UzNjg2NGM3ZTZhN2I5OSIsImVtYWlsIjoibXVzdGFmYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTc5MTU0NDEzNSwiZXhwIjoxNzkxNTQ1OTM1fQ.4GxXc08ocK4Aj3WsilO5pZ_GOxBcLQsMMyiGsmwKT8Q"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"seats\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/events/6ac8cd0df929773ab9a4ab01/bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "events",
+                "6ac8cd0df929773ab9a4ab01",
+                "bookings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My-Bookings (User)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzgxMTYyM2UzNjg2NGM3ZTZhN2I5OSIsImVtYWlsIjoibXVzdGFmYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTc5MTU0NDEzNSwiZXhwIjoxNzkxNTQ1OTM1fQ.4GxXc08ocK4Aj3WsilO5pZ_GOxBcLQsMMyiGsmwKT8Q"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel-Booking (User)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYzgxMTYyM2UzNjg2NGM3ZTZhN2I5OSIsImVtYWlsIjoibXVzdGFmYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTc5MTU0NDEzNSwiZXhwIjoxNzkxNTQ1OTM1fQ.4GxXc08ocK4Aj3WsilO5pZ_GOxBcLQsMMyiGsmwKT8Q"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/6ac8cd62f929773ab9a4ab10/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings",
+                "6ac8cd62f929773ab9a4ab10",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "eventId",
+      "value": ""
+    },
+    {
+      "key": "bookingId",
+      "value": ""
+    }
+  ]
+}
